@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComicCraft</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 ComicCraft</h1>
+        <p>Create your own amazing comic story!</p>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            <label>Story Idea</label>
+            <textarea name="idea" placeholder="Enter your story idea..." required></textarea>
+
+            <label>Genre</label>
+            <select name="genre">
+                <option>Fantasy</option>
+                <option>Adventure</option>
+                <option>Comedy</option>
+                <option>Science Fiction</option>
+                <option>Mystery</option>
+            </select>
+
+            <label>Target Audience</label>
+            <select name="audience">
+                <option>Children</option>
+                <option>Teens</option>
+                <option>Everyone</option>
+            </select>
+
+            <label>Number of Panels</label>
+            <select name="panels">
+                <option>4</option>
+                <option>6</option>
+                <option>8</option>
+            </select>
+
+            <button type="submit">✨ Create My Comic</button>
+        </form>
+
+        {% if story %}
+            <div class="result">
+                <h2>Your Comic Story</h2>
+                <div>{{ story }}</div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
