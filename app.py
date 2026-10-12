@@ -31,7 +31,7 @@ Keep it suitable for the selected audience, original, clear, and fun.
 Do not copy existing copyrighted characters or stories.
 """
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.8-flash",
         contents=prompt,
         config=types.GenerateContentConfig(temperature=0.8)
     )
