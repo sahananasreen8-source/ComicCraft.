@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ComicCraft — AI Comic Story Creator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="logo">✦</div>
+      <p class="eyebrow">YOUR AI STORY STUDIO</p>
+      <h1>Comic<span>Craft</span></h1>
+      <p class="subtitle">Turn your imagination into a comic, one panel at a time.</p>
+    </header>
+
+    <section class="card">
+      <h2>Create your comic</h2>
+      <form method="post">
+        <label for="idea">What's your story idea?</label>
+        <textarea id="idea" name="idea" rows="4" minlength="5" required
+          placeholder="Example: A shy student discovers a tiny dragon in the school library...">{{ form.idea }}</textarea>
+
+        <div class="grid">
+          <div>
+            <label for="genre">Genre</label>
+            <select id="genre" name="genre">
+              {% for item in ["Fantasy", "Adventure", "Comedy", "Mystery", "Science fiction", "Superhero"] %}
+              <option value="{{ item }}" {% if form.genre == item %}selected{% endif %}>{{ item }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div>
+            <label for="audience">Audience</label>
+            <select id="audience" name="audience">
+              {% for item in ["All ages", "Children", "Teens", "Adults"] %}
+              <option value="{{ item }}" {% if form.audience == item %}selected{% endif %}>{{ item }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <label for="panels">Number of panels</label>
+        <select id="panels" name="panels">
+          {% for item in ["4", "6", "8"] %}
+          <option value="{{ item }}" {% if form.panels == item %}selected{% endif %}>{{ item }} panels</option>
+          {% endfor %}
+        </select>
+        <button type="submit">✨ Generate my comic</button>
+      </form>
+      {% if error %}<div class="error" role="alert">{{ error }}</div>{% endif %}
+    </section>
+
+    {% if story %}
+    <section class="result">
+      <div class="result-head">
+        <p class="eyebrow">YOUR STORY IS READY</p>
+        <h2>Comic script</h2>
+      </div>
+      <pre>{{ story }}</pre>
+      <button class="secondary" type="button" onclick="copyStory()">Copy story</button>
+    </section>
+    <script>
+      function copyStory() {
+        const text = document.querySelector('.result pre').innerText;
+        navigator.clipboard.writeText(text).then(() => alert('Comic story copied!'));
+      }
+    </script>
+    {% endif %}
+    <footer>Made with imagination + Gemini AI</footer>
+  </main>
+</body>
+</html>
