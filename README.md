@@ -28,3 +28,7 @@ A Flask web app that creates original comic scripts using Google's Gemini API.
 ## Important
 - Do not upload your API key to GitHub or place it in source code.
 - Gemini API usage may have quotas or charges depending on your account and current terms.
+## 🚀 Live Demo
+Try it here: [ComicCraft](https://YOUR-LINK.onrender.com)
+
+> Note: This app runs on Render's free tier, so it may spin down after inactivity. The first load can take up to 50 seconds.
